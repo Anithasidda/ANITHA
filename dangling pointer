@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void createDanglingPointer() {
+    
+    int *ptr = (int *)malloc(sizeof(int));
+    if (ptr == NULL) {
+        printf("Memory allocation failed!\n");
+        return;
+    }
+
+    
+    *ptr = 42;
+    printf("Value before free: %d\n", *ptr);
+
+    
+    free(ptr);
+
+    
+    printf("Value after free (dangling pointer): %d\n", *ptr); 
+    
+    ptr = NULL; 
+}
+
+int main() {
+    createDanglingPointer();
+    return 0;
+}
